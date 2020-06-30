@@ -19,23 +19,35 @@ var connection = mysql.createConnection({
     if (err) throw err; 
     start();
 })
+
+//in initial function, need to ask the customer 
+    //1. ID of product they want to buy
+    //2. How many units of the product they would like to buy
+//Application checks the database to see if there are enough units in stock
+//compare input to stock
+//if order number > units in stock, log phrase and prevent order from being placed
+//if units are in stock, place order
+    //update database to reflect remaining amount of units
+    //show customer total cost of their purchase
+
 function start() {
     inquirer
         .prompt({
-            // name: "postOrBid",
-            // type: "list", 
-            // message: "Would you like to [POST] an auction or [BID] on an auction?",
-            // choices: ["POST", "BID", "EXIT"]
+            name: "productToBuy",
+            type: "prompt", 
+            message: "What would you like to buy?",
         })
-        .then(function(answer) {
-            //based on their answer, either call the bid or post functions
-            // if (answer.postOrBid === "POST") {
-            //     postAuction();
-            // }
-            // else if(answer.postOrBid === "BID") {
-            //     bidAuction();
-            // } else{
-            //     RTCPeerConnection.end();
-            // }
+        .then(function(quantity) {
+            inquirer
+                .prompt({
+                    name: "quantity",
+                    type: "number", 
+                    message: "How many units would you like?"
+                })
+                .then(function() {
+
+                })
         });
 }
+
+//********************************PUT YOUR PASSWORD IN TO TEST***************
