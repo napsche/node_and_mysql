@@ -17,9 +17,16 @@ var connection = mysql.createConnection({
 
   connection.connect(function(err) {
     if (err) throw err; 
-    start();
-})
-
+    connection.query("SELECT * FROM products", function (err, result, fields) {
+        if (err) throw err; 
+        console.log("What would you like to buy?");
+        console.log("-------------------------------------------------");
+        console.log(result);
+    })
+    // start();
+});
+// module.exports = connection;
+//display all items for sale!!!!
 //in initial function, need to ask the customer 
     //1. ID of product they want to buy
     //2. How many units of the product they would like to buy
@@ -30,24 +37,24 @@ var connection = mysql.createConnection({
     //update database to reflect remaining amount of units
     //show customer total cost of their purchase
 
-function start() {
-    inquirer
-        .prompt({
-            name: "productToBuy",
-            type: "prompt", 
-            message: "What would you like to buy?",
-        })
-        .then(function(quantity) {
-            inquirer
-                .prompt({
-                    name: "quantity",
-                    type: "number", 
-                    message: "How many units would you like?"
-                })
-                .then(function() {
+// function start() {
+//     inquirer
+//         .prompt({
+//             name: "productToBuy",
+//             type: "input", 
+//             message: "What is the ID# of the product you would like to buy?",
+//         })
+//         .then(function(quantity) {
+//             inquirer
+//                 .prompt({
+//                     name: "quantity",
+//                     type: "number", 
+//                     message: "How many units would you like?"
+//                 })
+//                 .then(function() {
 
-                })
-        });
-}
+//                 })
+//         });
+// }
 
-//********************************PUT YOUR PASSWORD IN TO TEST***************
+// //********************************PUT YOUR PASSWORD IN TO TEST***************
